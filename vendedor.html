@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do vendedor — MOD_ALT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=IBM+Plex+Sans:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header" class="site-header"></header>
+  <main class="wrap section">
+    <p class="kicker">ateliê / loja</p>
+    <h1>Cadastrar produto</h1>
+    <p class="notice">Os produtos novos ficam salvos neste navegador e aparecem no catálogo imediatamente.</p>
+    <div class="layout-2">
+      <form class="panel" id="seller-form">
+        <label>Nome da peça</label>
+        <input name="name" required placeholder="Ex.: Colete de fivelas">
+        <label>Cultura</label>
+        <select name="culture" required>
+          <option value="punk">Punk</option>
+          <option value="gotica">Gótica</option>
+          <option value="emo">Emo</option>
+        </select>
+        <label>Categoria</label>
+        <select name="category" required>
+          <option value="tecidos">Tecidos</option>
+          <option value="couro">Couro</option>
+          <option value="acessorios">Acessórios</option>
+        </select>
+        <label>Preço (R$)</label>
+        <input name="price" type="number" min="1" step="0.01" required>
+        <label>Função estética (uma frase)</label>
+        <textarea name="aesthetic" rows="2" required placeholder="O que essa peça faz no corpo e na cena?"></textarea>
+        <label>História do produto</label>
+        <textarea name="history" rows="4" required placeholder="De onde vem esse objeto nesta cultura?"></textarea>
+        <label>Função na cultura (detalhe)</label>
+        <textarea name="function" rows="4" required placeholder="Como ela opera esteticamente no look punk/gótico/emo?"></textarea>
+        <div class="actions">
+          <button class="btn" type="submit">Publicar no catálogo</button>
+        </div>
+        <p id="seller-msg"></p>
+      </form>
+      <aside class="panel">
+        <h2>Seus cadastros</h2>
+        <div id="mine"></div>
+      </aside>
+    </div>
+  </main>
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    layout("vendedor");
+    function listMine() {
+      const extra = JSON.parse(localStorage.getItem("modalt_products") || "[]");
+      document.getElementById("mine").innerHTML = extra.length
+        ? extra.map((p) => `<p><a href="produto.html?id=${p.id}">${p.name}</a><br><span class="meta">${cultureLabel(p.culture)} · ${money(p.price)}</span></p>`).join("")
+        : '<p class="history">Nenhum produto cadastrado ainda.</p>';
+    }
+    listMine();
+    document.getElementById("seller-form").onsubmit = (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target));
+      const product = {
+        id: "s-" + Date.now(),
+        name: data.name,
+        culture: data.culture,
+        category: data.category,
+        price: Number(data.price),
+        aesthetic: data.aesthetic,
+        history: data.history,
+        function: data.function
+      };
+      saveSellerProduct(product);
+      e.target.reset();
+      document.getElementById("seller-msg").innerHTML = '<span class="notice success">Peça publicada. Ela já aparece em Produtos.</span>';
+      listMine();
+    };
+  </script>
+</body>
+</html>

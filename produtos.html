@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos — MOD_ALT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=IBM+Plex+Sans:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header" class="site-header"></header>
+  <main class="wrap section">
+    <div class="section-head">
+      <div>
+        <p class="kicker">catálogo</p>
+        <h1>Produtos</h1>
+        <p>Filtre por cultura. Cada peça explica de onde veio e o que faz no look.</p>
+      </div>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="catalog"></div>
+  </main>
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    layout("produtos");
+    const params = new URLSearchParams(location.search);
+    let current = params.get("cultura") || "todas";
+
+    function render() {
+      const products = getProducts().filter((p) => current === "todas" || p.culture === current);
+      document.getElementById("catalog").innerHTML = products.map((p) => `
+        <article class="card">
+          <a href="produto.html?id=${p.id}">
+            <div class="thumb">${thumbSvg(p)}<span class="badge">${cultureLabel(p.culture)}</span></div>
+            <div class="card-body">
+              <p class="meta">${p.category}</p>
+              <h3>${p.name}</h3>
+              <p>${p.aesthetic}</p>
+              <p class="price">${money(p.price)}</p>
+            </div>
+          </a>
+        </article>
+      `).join("") || '<div class="empty">Nenhum produto nesta cultura ainda.</div>';
+
+      const chips = [
+        ["todas", "Todas"],
+        ["punk", "Punk"],
+        ["gotica", "Gótica"],
+        ["emo", "Emo"]
+      ];
+      document.getElementById("filters").innerHTML = chips.map(([id, label]) =>
+        `<button class="chip ${current === id ? "active" : ""}" data-id="${id}">${label}</button>`
+      ).join("");
+      document.querySelectorAll(".chip").forEach((btn) => {
+        btn.onclick = () => {
+          current = btn.dataset.id;
+          const url = new URL(location.href);
+          if (current === "todas") url.searchParams.delete("cultura");
+          else url.searchParams.set("cultura", current);
+          history.replaceState({}, "", url);
+          render();
+        };
+      });
+    }
+    render();
+  </script>
+</body>
+</html>

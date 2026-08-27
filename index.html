@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOD_ALT — moda das subculturas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=IBM+Plex+Sans:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header" class="site-header"></header>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <p class="kicker">arquivo de rua · 1976–hoje</p>
+        <h1>Roupa que recusa o centro.</h1>
+        <p class="lede">
+          MOD_ALT é um e-commerce (fictício) de moda alternativa: tecidos, couro e acessórios
+          do punk, do gótico e do emo — com a história de cada peça e tutoriais DIY para
+          quem prefere fazer do que só comprar.
+        </p>
+        <div class="actions">
+          <a class="btn" href="produtos.html">Ver produtos</a>
+          <a class="btn ghost" href="diy.html">Tutoriais DIY punk</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <p>Três linguagens, um mesmo recado: o corpo não é vitrine neutra.</p>
+        <div class="cultures">
+          <a class="culture punk" href="produtos.html?cultura=punk">
+            <b>Punk</b>
+            Couro, tartan, tachas e o direito de costurar errado.
+          </a>
+          <a class="culture goth" href="produtos.html?cultura=gotica">
+            <b>Gótica</b>
+            Luto teatral, veludo, prata e silhueta de filme mudo.
+          </a>
+          <a class="culture emo" href="produtos.html?cultura=emo">
+            <b>Emo</b>
+            Listra, franja, skinny e o sentimento à mostra.
+          </a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Peças em destaque</h2>
+          <p>Cada item carrega origem cultural e função estética — não só preço.</p>
+        </div>
+        <a class="btn ghost" href="produtos.html">Catálogo completo</a>
+      </div>
+      <div class="grid" id="featured"></div>
+    </section>
+  </main>
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    layout("home");
+    const featured = getProducts().slice(0, 6);
+    document.getElementById("featured").innerHTML = featured.map((p) => `
+      <article class="card">
+        <a href="produto.html?id=${p.id}">
+          <div class="thumb">${thumbSvg(p)}<span class="badge">${cultureLabel(p.culture)}</span></div>
+          <div class="card-body">
+            <p class="meta">${p.category}</p>
+            <h3>${p.name}</h3>
+            <p>${p.aesthetic}</p>
+            <p class="price">${money(p.price)}</p>
+          </div>
+        </a>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>

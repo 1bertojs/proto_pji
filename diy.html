@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutoriais DIY punk — MOD_ALT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=IBM+Plex+Sans:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="site-header" class="site-header"></header>
+  <main class="wrap section">
+    <p class="kicker">fazer > comprar</p>
+    <h1>Tutoriais DIY punk</h1>
+    <p class="lede">O punk não espera a loja abrir. Aqui estão guias de customização de tecido, couro e acessórios — o mesmo espírito das peças à venda, sem exigir caixa registradora.</p>
+    <div id="tutorials" style="display:grid;gap:1rem;margin-top:1.6rem"></div>
+  </main>
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    layout("diy");
+    document.getElementById("tutorials").innerHTML = TUTORIALS.map((t, idx) => `
+      <article class="tutorial" id="${t.id}">
+        <div class="step-num">${String(idx + 1).padStart(2, "0")}</div>
+        <div>
+          <p class="meta">${t.level} · ${t.time}</p>
+          <h2>${t.title}</h2>
+          <p>${t.summary}</p>
+          <ol class="history">
+            ${t.steps.map((s) => `<li>${s}</li>`).join("")}
+          </ol>
+        </div>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>
