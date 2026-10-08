@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=IBM+Plex+Sans:wght@400;600&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <header id="site-header" class="site-header"></header>
@@ -51,35 +51,8 @@
     </div>
   </main>
   <footer id="site-footer" class="site-footer"></footer>
-  <script src="js/store.js"></script>
-  <script src="js/layout.js"></script>
-  <script>
-    layout("vendedor");
-    function listMine() {
-      const extra = JSON.parse(localStorage.getItem("modalt_products") || "[]");
-      document.getElementById("mine").innerHTML = extra.length
-        ? extra.map((p) => `<p><a href="produto.html?id=${p.id}">${p.name}</a><br><span class="meta">${cultureLabel(p.culture)} · ${money(p.price)}</span></p>`).join("")
-        : '<p class="history">Nenhum produto cadastrado ainda.</p>';
-    }
-    listMine();
-    document.getElementById("seller-form").onsubmit = (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(e.target));
-      const product = {
-        id: "s-" + Date.now(),
-        name: data.name,
-        culture: data.culture,
-        category: data.category,
-        price: Number(data.price),
-        aesthetic: data.aesthetic,
-        history: data.history,
-        function: data.function
-      };
-      saveSellerProduct(product);
-      e.target.reset();
-      document.getElementById("seller-msg").innerHTML = '<span class="notice success">Peça publicada. Ela já aparece em Produtos.</span>';
-      listMine();
-    };
-  </script>
+  <script src="../js/produtopadrao.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/vendedor.js"></script>
 </body>
 </html>

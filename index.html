@@ -22,21 +22,21 @@
           quem prefere fazer do que comprar.
         </p>
         <div class="actions">
-          <a class="btn" href="produtos.html">Ver produtos</a>
-          <a class="btn ghost" href="diy.html">Tutoriais DIY punk</a>
+          <a class="btn" href="pages/produtos.html">Ver produtos</a>
+          <a class="btn ghost" href="pages/diy.html">Tutoriais DIY punk</a>
         </div>
       </div>
       <aside class="hero-panel">
         <div class="cultures">
-          <a class="culture punk" href="produtos.html?cultura=punk">
+          <a class="culture punk" href="pages/produtos.html?cultura=punk">
             <b>Punk</b>
             Couro, tartan, tachas e o direito de costurar como quiser.
           </a>
-          <a class="culture goth" href="produtos.html?cultura=gotica">
+          <a class="culture goth" href="pages/produtos.html?cultura=gotica">
             <b>Gótica</b>
             Luto teatral, veludo, prata e renda.
           </a>
-          <a class="culture emo" href="produtos.html?cultura=emo">
+          <a class="culture emo" href="pages/produtos.html?cultura=emo">
             <b>Emo</b>
             Listra, franja, skinny e os sentimentos.
           </a>
@@ -50,30 +50,14 @@
           <h2>Peças em destaque</h2>
           <p>Cada item carrega origem cultural e função estética — não só preço.</p>
         </div>
-        <a class="btn ghost" href="produtos.html">Catálogo completo</a>
+        <a class="btn ghost" href="pages/produtos.html">Catálogo completo</a>
       </div>
       <div class="grid" id="featured"></div>
     </section>
   </main>
   <footer id="site-footer" class="site-footer"></footer>
-  <script src="js/store.js"></script>
+  <script src="js/produtopadrao.js"></script>
   <script src="js/layout.js"></script>
-  <script>
-    layout("home");
-    const featured = getProducts().slice(0, 6);
-    document.getElementById("featured").innerHTML = featured.map((p) => `
-      <article class="card">
-        <a href="produto.html?id=${p.id}">
-          <div class="thumb">${thumbSvg(p)}<span class="badge">${cultureLabel(p.culture)}</span></div>
-          <div class="card-body">
-            <p class="meta">${p.category}</p>
-            <h3>${p.name}</h3>
-            <p>${p.aesthetic}</p>
-            <p class="price">${money(p.price)}</p>
-          </div>
-        </a>
-      </article>
-    `).join("");
-  </script>
+  <script src="js/inicio.js"></script>
 </body>
 </html>

@@ -1,19 +1,22 @@
 function layout(active) {
   const header = document.getElementById("site-header");
   const footer = document.getElementById("site-footer");
+  const inPages = location.pathname.includes("/pages/");
+  const rootPath = inPages ? "../" : "";
+  const pagesPath = inPages ? "" : "pages/";
   if (header) {
     header.innerHTML = `
       <div class="nav-wrap">
-        <a class="brand" href="index.html">
+        <a class="brand" href="${rootPath}index.html">
           <strong>MOD_ALT</strong>
           <span>moda das subculturas</span>
         </a>
         <nav class="nav-links" aria-label="Principal">
-          <a href="index.html" class="${active === "home" ? "active" : ""}">Início</a>
-          <a href="produtos.html" class="${active === "produtos" ? "active" : ""}">Produtos</a>
-          <a href="diy.html" class="${active === "diy" ? "active" : ""}">Tutoriais DIY</a>
-          <a href="vendedor.html" class="${active === "vendedor" ? "active" : ""}">Área do vendedor</a>
-          <a href="carrinho.html" class="cart-link ${active === "carrinho" ? "active" : ""}">
+          <a href="${rootPath}index.html" class="${active === "home" ? "active" : ""}">Início</a>
+          <a href="${pagesPath}produtos.html" class="${active === "produtos" ? "active" : ""}">Produtos</a>
+          <a href="${pagesPath}diy.html" class="${active === "diy" ? "active" : ""}">Tutoriais DIY</a>
+          <a href="${pagesPath}vendedor.html" class="${active === "vendedor" ? "active" : ""}">Área do vendedor</a>
+          <a href="${pagesPath}carrinho.html" class="cart-link ${active === "carrinho" ? "active" : ""}">
             Carrinho <span id="cart-count">0</span>
           </a>
         </nav>
