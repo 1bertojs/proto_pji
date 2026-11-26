@@ -15,6 +15,7 @@ function layout(active) {
           <a href="${rootPath}index.html" class="${active === "home" ? "active" : ""}">Início</a>
           <a href="${pagesPath}produtos.html" class="${active === "produtos" ? "active" : ""}">Produtos</a>
           <a href="${pagesPath}diy.html" class="${active === "diy" ? "active" : ""}">Tutoriais DIY</a>
+          <a href="${pagesPath}sobre.html" class="${active === "sobre" ? "active" : ""}">Sobre nós</a>
           <a href="${pagesPath}vendedor.html" class="${active === "vendedor" ? "active" : ""}">Área do vendedor</a>
           <a href="${pagesPath}carrinho.html" class="cart-link ${active === "carrinho" ? "active" : ""}">
             Carrinho <span id="cart-count">0</span>

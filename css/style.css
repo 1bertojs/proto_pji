@@ -461,6 +461,209 @@ select:focus {
   padding: 0;
 }
 
+/* Página Sobre nós */
+.about-hero {
+  min-height: 440px;
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  align-items: center;
+  gap: 3rem;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.about-copy h1 {
+  max-width: 760px;
+}
+
+.about-mark {
+  aspect-ratio: 1;
+  max-width: 300px;
+  justify-self: end;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background:
+    radial-gradient(circle, rgba(161, 31, 58, 0.22), transparent 58%),
+    rgba(17, 14, 12, 0.7);
+  box-shadow: 0 0 0 12px rgba(161, 31, 58, 0.025), var(--shadow);
+}
+
+.about-mark::before,
+.about-mark::after {
+  content: "";
+  position: absolute;
+  width: 115%;
+  height: 1px;
+  background: var(--blood);
+  transform: rotate(32deg);
+}
+
+.about-mark::after {
+  transform: rotate(-32deg);
+}
+
+.about-mark span,
+.about-mark strong,
+.about-mark small {
+  z-index: 1;
+}
+
+.about-mark span {
+  font-family: "Cinzel", serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.35em;
+  margin-right: -0.35em;
+}
+
+.about-mark strong {
+  font-family: "UnifrakturCook", "Cinzel", serif;
+  font-size: clamp(4rem, 8vw, 6.2rem);
+  line-height: 0.9;
+  color: var(--ink);
+}
+
+.about-mark small {
+  margin-top: 1.2rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.62rem;
+}
+
+.about-manifest {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 3rem;
+  align-items: start;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.about-manifest h2,
+.founders h2,
+.about-cta h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+}
+
+.about-manifest > p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.12rem;
+  line-height: 1.85;
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.value-card {
+  min-height: 270px;
+  border: 1px solid var(--line);
+  background: var(--bg-card);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.value-card:nth-child(1) { border-top: 3px solid var(--punk); }
+.value-card:nth-child(2) { border-top: 3px solid var(--goth); }
+.value-card:nth-child(3) { border-top: 3px solid var(--blood); }
+
+.value-number {
+  color: var(--muted);
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.12em;
+}
+
+.value-card h3 {
+  margin: 2.5rem 0 0.8rem;
+  font-size: 1.25rem;
+}
+
+.value-card p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.founders {
+  padding-top: 3.5rem;
+  padding-bottom: 4rem;
+}
+
+.founders-heading {
+  margin-bottom: 1.5rem;
+}
+
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.founder-card {
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.founder-avatar {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid var(--blood-deep);
+  display: grid;
+  place-items: center;
+  font-family: "Cinzel", serif;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, var(--bg-card), rgba(161, 31, 58, 0.25));
+}
+
+.founder-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.founder-card p {
+  margin: 0;
+  color: var(--blood);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.68rem;
+}
+
+.about-cta {
+  text-align: center;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(rgba(7, 6, 5, 0.72), rgba(7, 6, 5, 0.72)),
+    radial-gradient(circle at center, var(--blood-deep), transparent 55%);
+  padding: 4rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-cta .actions {
+  justify-content: center;
+}
+
 @media (max-width: 860px) {
   .hero,
   .grid,
@@ -473,5 +676,26 @@ select:focus {
   .nav-wrap {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .about-hero,
+  .about-manifest,
+  .about-values,
+  .founders-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    gap: 2rem;
+    min-height: auto;
+  }
+
+  .about-mark {
+    justify-self: start;
+    max-width: 220px;
+  }
+
+  .founder-card {
+    min-height: 108px;
   }
 }
